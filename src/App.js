@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component,Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import NavBar from './components/layouts/NavBar';
 import Compare from './components/pages/Compare';
@@ -11,23 +11,27 @@ import './App.css';
 
 class App extends Component{
     state = {
-        users: [],
+        histo: [],
       }
     async componentDidMount(){
-        
-        const res = await axios.get(`http://localhost:3000/HistoryData.js`);
-        console.log(res);
-        this.setState({users:res.data, loading:false});
-    
+        const res = await axios.get('http://localhost:3000/api/HistoryData.js');
+        this.setState({histo: res.data});
       }
     render(){
+        const {histo} = this.state
         return(
             <Router>
             <div className="App">
-                <NavBar title="Docompar" icon="fab fa-github" />
+                <NavBar title="Docompar" icon="fab fa-github"/>
                 <div className='container'>
                     <Switch>
-                    <Route exact path='/history'   component={History} />
+                    
+                    <Route exact path='/history' 
+                    render={props => (
+                    <Fragment>
+                        <History   histo={histo}   component={History} />
+                    </Fragment>
+            )} />
                     <Route exact path='/compare'   component={Compare}/>
                     <Route exact path='/logout'   component={Login}/>
                     <Route exact path='/result'   component={Result}/>
