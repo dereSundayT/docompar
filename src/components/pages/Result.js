@@ -2,7 +2,7 @@ import React from 'react';
 const Result = () =>{
     return (
         <div>
-            Result
+            <p className='alert alert-success'>Loading Result....... Please Wait</p>
         </div>
     )
 }

@@ -8,17 +8,20 @@ import Result from './components/pages/Result';
 
 import axios from 'axios';
 import './App.css';
+import './Style.css';
 
 class App extends Component{
     state = {
         histo: [],
       }
     async componentDidMount(){
-        const res = await axios.get('http://localhost:3000/api/HistoryData.js');
+        const res = await axios.get('https://decompar.herokuapp.com/api/HistoryData.js');
         this.setState({histo: res.data});
+        
       }
     render(){
         const {histo} = this.state
+        console.log(histo)
         return(
             <Router>
             <div className="App">
