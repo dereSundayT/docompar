@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from '../layouts/NavBar';
 class Compare extends Component{
     state = {
         text : '',
@@ -18,6 +19,7 @@ class Compare extends Component{
     render(){
         return (
             <div className='container'>
+                <NavBar title="Docompar" icon="fab fa-500px"/>
                 <h2 className='text-center' >Compare Student Assignment</h2>
                 <hr />
                 <form onSubmit={this.onSubmit} className='form text-center'>

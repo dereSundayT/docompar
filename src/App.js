@@ -1,6 +1,6 @@
 import React, {Component,Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import NavBar from './components/layouts/NavBar';
+
 import Compare from './components/pages/Compare';
 import History  from './components/pages/History';
 import Login from './components/pages/Login';
@@ -17,7 +17,6 @@ class App extends Component{
     async componentDidMount(){
         const res = await axios.get('https://decompar.herokuapp.com/api/HistoryData.js');
         this.setState({histo: res.data});
-        
       }
     render(){
         const {histo} = this.state
@@ -25,9 +24,10 @@ class App extends Component{
         return(
             <Router>
             <div className="App">
-                <NavBar title="Docompar" icon="fab fa-github"/>
+                
                 <div className='container'>
                     <Switch>
+                    <Route exact path='/'   component={Login}/>
                     
                     <Route exact path='/history' 
                     render={props => (
